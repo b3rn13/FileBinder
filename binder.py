@@ -20,6 +20,8 @@ import shutil
 import subprocess
 
 def generatePyBinder(name, f1name, f2name, f1, f2):
+	''' File binder template '''
+	
 	template = """
 import os
 import sys
@@ -68,6 +70,8 @@ if __name__ == "__main__":
 	return name+".py"
 
 def generateExec(pyName, iconName):
+	''' Generate new exe file '''
+	
 	cmd = subprocess.Popen(['pyinstaller', "--onefile", '--noconsole',"--icon=%s"%(iconName), pyName], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 	stdout, nothing = cmd.communicate()
 
@@ -81,6 +85,8 @@ def generateExec(pyName, iconName):
 
 
 def main():
+	''' Main Function '''
+	
 	if len(sys.argv) == 5:
 
 		file1Name  = sys.argv[1]
