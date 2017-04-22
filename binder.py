@@ -20,7 +20,7 @@ import shutil
 import subprocess
 
 def generatePyBinder(name, f1name, f2name, f1, f2):
-	''' File binder template '''
+	''' Template of binded '''
 	
 	template = """
 import os
