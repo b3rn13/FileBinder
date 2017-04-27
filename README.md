@@ -4,7 +4,7 @@ Bind files with Python
 # Installation
 ```
 ~$ git clone https://github.com/blackvkng/FileBinder.git
-~$ cd FileBimder
+~$ cd FileBinder
 ~# pip install -r requirements.txt
 ```
 # Usage
